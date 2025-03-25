@@ -1,14 +1,21 @@
 import fastify from "fastify";
 import cors from '@fastify/cors'
+import "dotenv/config"
+import { env } from './schema'
+import { z } from "zod";
 
 const app = fastify()
 app.register(cors, {})
 
-interface ReqQuery {
-    max: string,
-    min: string,
-    count: string,
-}
+
+const randomRequestSchema = z.object({
+    max: z.number(),
+    min: z.number(),
+    count: z.number(),
+})
+
+type ReqQuery = z.infer<typeof randomRequestSchema>
+
 
 app.get('/random', (req, res) => {
     let { max, min, count } = req.query as ReqQuery
@@ -33,7 +40,7 @@ app.get('/random', (req, res) => {
 })
 
 app.listen({
-    port: 3000,
+    port: env.PORT,
 }).then(() => {
     console.log('HTTP server running')
 })
