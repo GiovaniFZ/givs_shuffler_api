@@ -3,10 +3,12 @@ import cors from '@fastify/cors'
 import "dotenv/config"
 import { env } from './schema'
 import { z } from "zod";
+import packageJson from '../package.json'
+import fs from 'fs'
+import { welcomeHTML } from "../welcome";
 
 const app = fastify()
 app.register(cors, {})
-
 
 const randomRequestSchema = z.object({
     max: z.number(),
@@ -15,6 +17,10 @@ const randomRequestSchema = z.object({
 })
 
 type ReqQuery = z.infer<typeof randomRequestSchema>
+
+app.get('/', (_, res) => {
+    res.type('text/html').send(welcomeHTML)
+})
 
 
 app.get('/random', (req, res) => {
