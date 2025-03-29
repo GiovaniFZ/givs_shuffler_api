@@ -46,7 +46,7 @@ app.get('/random', (req, res) => {
 })
 
 app.listen({
-    port: env.PORT,
+    port: Number(env.PORT),
 }).then(() => {
     console.log('HTTP server running')
 })
