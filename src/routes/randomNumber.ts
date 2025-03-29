@@ -16,10 +16,6 @@ export async function generateRandomNumbers(app: FastifyInstance) {
         let countInt = Number(count);
         let result: number[] = []
 
-        if (isNaN(minInt) || isNaN(maxInt) || isNaN(countInt) || countInt <= 0) {
-            return res.status(400);
-        }
-
         if (minInt > maxInt) {
             return res.status(400);
         }
