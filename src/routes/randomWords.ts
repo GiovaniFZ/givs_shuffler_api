@@ -11,8 +11,10 @@ export async function generateRandomWords(app: FastifyInstance) {
         const { words, count } = wordsSchema.parse(req.body)
         const wordsSize = words.length
         let results: string[] = []
-        let randomNumber = Math.floor(Math.random() * (wordsSize + 1));
-        results.push(words[randomNumber])
+        for (let i = 0; i < count; i++) {
+            let randomNumber = Math.floor(Math.random() * (wordsSize + 1));
+            results.push(words[randomNumber])
+        }
         res.send({ results })
     })
 }
