@@ -16,8 +16,6 @@ export async function generateRandomNumbers(app: FastifyInstance) {
     const { max, min, count, no_repeat } = randomRequestSchema.parse(req.query);
     const result: number[] = [];
 
-    console.log(no_repeat);
-
     if (min > max) {
       return res.status(400).send({ error: 'min is greater than max' });
     }
