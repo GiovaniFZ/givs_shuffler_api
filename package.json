@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx watch src/server.ts",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "release": "npm version patch"
+    "release": "npm version patch",
+    "test": "vitest"
   },
   "keywords": [],
   "author": "",
@@ -19,15 +19,18 @@
     "dotenv": "^16.4.7",
     "fastify": "^5.2.1",
     "tsx": "^4.19.3",
+    "vitest": "^3.1.2",
     "zod": "^3.24.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.24.0",
+    "@types/supertest": "^6.0.3",
     "eslint": "^9.24.0",
     "eslint-config-prettier": "^10.1.2",
     "eslint-plugin-prettier": "^5.2.6",
     "globals": "^16.0.0",
     "prettier": "^3.5.3",
+    "supertest": "^7.1.0",
     "typescript-eslint": "^8.29.1"
   }
 }
