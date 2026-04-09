@@ -1,6 +1,6 @@
 import 'dotenv/config';
-import { env } from './schema/env';
 import { app } from './app';
+import { env } from './infra/schema/env';
 
 app
   .listen({

@@ -1,10 +1,10 @@
 import fastify from 'fastify';
 import cors from '@fastify/cors';
-import { generateRandomNumbers } from './routes/randomNumber';
-import { generateRandomWords } from './routes/randomWords';
-import { welcomeHTML } from './routes/welcome';
 import { ZodError } from 'zod';
-import { env } from './schema/env';
+import { env } from './infra/schema/env';
+import { welcomeHTML } from './infra/http/routes/welcome';
+import { generateRandomWords } from './infra/http/routes/randomWords';
+import { generateRandomNumbers } from './infra/http/routes/randomNumber';
 
 export const app = fastify();
 
