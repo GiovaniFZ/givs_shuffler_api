@@ -1,5 +1,6 @@
 import { FastifyInstance } from 'fastify';
 import { z } from 'zod';
+import { MakeGenerateRandomNumberUseCase } from '../../../domain/application/factories/make-generate-random-number-use-case';
 
 export async function generateRandomNumbers(app: FastifyInstance) {
   const randomRequestSchema = z.object({
@@ -14,7 +15,16 @@ export async function generateRandomNumbers(app: FastifyInstance) {
 
   app.get('/random', async (req, res) => {
     const { max, min, count, no_repeat } = randomRequestSchema.parse(req.query);
-    const result: number[] = [];
-    res.send({ result });
+    const useCase = MakeGenerateRandomNumberUseCase();
+    try {
+      const result = useCase.execute({ max, min, count, no_repeat });
+      res.send({ result });
+    } catch (error) {
+      if (error instanceof Error) {
+        res.status(400).send({ message: error.message });
+      } else {
+        res.status(500).send({ message: 'Internal Server Error' });
+      }
+    }
   });
 }
